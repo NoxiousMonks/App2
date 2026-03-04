@@ -14,15 +14,16 @@ import androidx.compose.ui.unit.sp
 import com.example.app2.models.MainViewModel
 
 @Composable
-fun ProductInfoScreen(viewModel: MainViewModel, onClick: () -> Unit) {
+fun ProductInfoScreen(viewModel: MainViewModel, productId: Int, onClick: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
          horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text("ASASASS")
-        val product = viewModel.prodductList[0]
-        Text(product.name, fontSize = 20.sp)
-        Text(product.description)
+
+//        val product = viewModel.productList[0]
+        val product = viewModel.productList.find { it.id == productId }
+        Text(product?.name ?: "", fontSize = 20.sp)
+        Text(product?.description ?: "")
 
         Button(
             onClick = onClick,
