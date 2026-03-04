@@ -14,9 +14,11 @@ class NavigationController: ViewModel() {
     var selectedProduct by mutableStateOf<Int>(0)
 
     //Переход к экрану
-    fun navigateTo(screen:Screens, productId: Int) {
+    fun navigateTo(screen:Screens) {
 //    fun navigateTo(screen:Screens) {
         currentScreen = screen
+    }
+    fun selectedProductID (productId: Int){
         selectedProduct = productId
     }
 }

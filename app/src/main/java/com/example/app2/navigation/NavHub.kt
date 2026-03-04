@@ -12,19 +12,28 @@ fun NavHub(viewModel: MainViewModel, navigationController: NavigationController)
     val screen = navigationController.currentScreen
 
     when(screen){
-        Screens.ProductsScreen -> ProductsScreen(viewModel, onClick = { id -> navigationController.navigateTo(Screens.ProductInfoScreen, id) })
+        Screens.ProductsScreen -> ProductsScreen(viewModel,
+            onClick = { id ->
+                navigationController.navigateTo(Screens.ProductInfoScreen)
+                navigationController.selectedProductID(id)
+            })
 
         Screens.ProductInfoScreen -> ProductInfoScreen(
             viewModel,
             productId = navigationController.selectedProduct,
             onClick = {
 //                product ->
-////                val product = viewModel.productList[0]
-//                viewModel.korzinaList.add(product.name)
-                navigationController.navigateTo(Screens.KorzinaScreen, navigationController.selectedProduct)
+                val product = viewModel.productList[navigationController.selectedProduct]
+                viewModel.korzinaList.add(product.name)
+                navigationController.selectedProductID(navigationController.selectedProduct)
+                navigationController.navigateTo(Screens.KorzinaScreen)
             }
         )
 
-        Screens.KorzinaScreen -> KorzinaScreen(viewModel)
+        Screens.KorzinaScreen -> KorzinaScreen(viewModel,
+            onClick = {
+                navigationController.navigateTo(Screens.ProductsScreen, )
+            }
+        )
     }
 }
