@@ -27,13 +27,15 @@ fun NavHub(viewModel: MainViewModel, navigationController: NavigationController)
                 viewModel.korzinaList.add(product.name)
                 navigationController.selectedProductID(navigationController.selectedProduct)
                 navigationController.navigateTo(Screens.KorzinaScreen)
-            }
+            },
+            onBack = { navigationController.navigateBack() }
         )
 
         Screens.KorzinaScreen -> KorzinaScreen(viewModel,
             onClick = {
                 navigationController.navigateTo(Screens.ProductsScreen, )
-            }
+            },
+            onBack = { navigationController.navigateBack() }
         )
     }
 }
